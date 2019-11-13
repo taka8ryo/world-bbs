@@ -19,7 +19,7 @@
         <div class="col col-md-4">
           <nav class="panel panel-default">投稿</nav>
           <div class="panel-body">
-            <a href="#" class="btn btn-default btn-block">
+            <a href="{{ route('posts.create') }}" class="btn btn-default btn-block">
               投稿する
             </a>
           </div>
