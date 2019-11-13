@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Http\Requests\CreatePost;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -23,6 +24,10 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post
         ]);
+
+        if (is_null($current_post)) {
+            abort(404);
+        }
     }
 
     public function showCreateForm()
@@ -35,7 +40,7 @@ class PostController extends Controller
         $post = new Post();
         $post->title = $request->title;
         $post->content = $request->content;
-        $post->save();
+        Auth::user()->posts()->save($post);
 
         return redirect()->route('posts.index', [
             'id' => $post->id,

@@ -11,16 +11,18 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+
+    Route::get('/post/{id}', 'PostController@show')->name('posts.show');
+
+    Route::get('/posts', 'PostController@index')->name('posts.index');
+
+    Route::get('/posts/create', 'PostController@showCreateForm')->name('posts.create');
+    Route::post('posts/create', 'PostController@create');
+
+    Route::get('/posts/{id}/edit', 'PostController@showEditForm')->name('posts.edit');
+    Route::post('/posts/{id}/edit', 'PostController@edit');
 });
 
-Route::get('/post/{id}', 'PostController@show')->name('posts.show');
-
-Route::get('/posts', 'PostController@index')->name('posts.index');
-
-Route::get('/posts/create', 'PostController@showCreateForm')->name('posts.create');
-Route::post('posts/create', 'PostController@create');
-
-Route::get('/posts/{id}/edit', 'PostController@showEditForm')->name('posts.edit');
-Route::post('/posts/{id}/edit', 'PostController@edit');
+Auth::routes();

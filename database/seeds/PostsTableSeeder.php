@@ -13,6 +13,8 @@ class PostsTableSeeder extends Seeder
      */
     public function run()
     {
+        $user = DB::table('users')->first();
+
         $titles = ['朝','昼','夜'];
         $contents = ['おはよう','こんにちは','こんばんは'];
 
@@ -21,6 +23,7 @@ class PostsTableSeeder extends Seeder
                 DB::table('posts')->insert([
                     'title' => $title,
                     'content' => $content,
+                    'user_id' => $user->id,
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now(),
                 ]);
