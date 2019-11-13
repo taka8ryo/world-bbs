@@ -19,7 +19,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
               </a>
               <p class="card-text">{{ $post->content }}</p>
-              <a href="#" class="card-link">リンク1</a>
+              <a href="{{ action('PostController@edit', $post->id) }}" class="card-link">編集</a>
               <a href="#" class="card-link">リンク2</a>
             </div>
           </div>

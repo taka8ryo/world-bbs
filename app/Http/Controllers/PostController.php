@@ -20,7 +20,9 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show', ['post' => $post]);
+        return view('posts.show', [
+            'post' => $post
+        ]);
     }
 
     public function showCreateForm()
@@ -37,6 +39,28 @@ class PostController extends Controller
 
         return redirect()->route('posts.index', [
             'id' => $post->id,
+        ]);
+    }
+
+    public function showEditForm(int $id)
+    {
+        $post = post::find($id);
+
+        return view('posts/edit', [
+            'post' => $post,
+        ]);
+    }
+
+    public function edit(int $id, int $post_id, EditPost $request)
+    {
+        $post = Post::find($post_id);
+
+        $post->title = $request->title;
+        $post->content = $request->content;
+        $post->save();
+
+        return redirect()->route('post.index', [
+            'id' => $post->post_id,
         ]);
     }
 }
