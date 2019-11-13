@@ -20,7 +20,7 @@
               </a>
               <p class="card-text">{{ $post->content }}</p>
               <a href="{{ action('PostController@edit', $post->id) }}" class="card-link">編集</a>
-              <a href="#" class="card-link">リンク2</a>
+              <a href="{{ action('PostController@delete',$post->id) }}" class="card-link">削除</a>
             </div>
           </div>
           @endforeach

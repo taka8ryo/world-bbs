@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Comment;
 use App\Http\Requests\CreatePost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,13 +22,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
+        $comments = Comment::where('post_id', $id)->get();
         return view('posts.show', [
             'post' => $post
         ]);
-
-        if (is_null($current_post)) {
-            abort(404);
-        }
     }
 
     public function showCreateForm()
@@ -67,5 +65,11 @@ class PostController extends Controller
         return redirect()->route('post.index', [
             'id' => $post->post_id,
         ]);
+    }
+
+    public function delete($id)
+    {
+        Post::find($id)->delete();
+        return redirect()->to('posts');
     }
 }
