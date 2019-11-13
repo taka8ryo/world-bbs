@@ -24,10 +24,6 @@ class PostController extends Controller
         return view('posts.show', [
             'post' => $post
         ]);
-
-        if (is_null($current_post)) {
-            abort(404);
-        }
     }
 
     public function showCreateForm()
@@ -67,5 +63,13 @@ class PostController extends Controller
         return redirect()->route('post.index', [
             'id' => $post->post_id,
         ]);
+    }
+
+    public function delete(int $id)
+    {
+        $post = Post::find($id);
+        $post->delete();
+
+        return redirect()->to('posts');
     }
 }

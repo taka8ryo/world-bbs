@@ -16,8 +16,8 @@
               <h5 class="card-title">{{ $post->title }}</h5>
               <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
               <p class="card-text">{{ $post->content }}</p>
-              <a href="#" class="card-link">リンク1</a>
-              <a href="#" class="card-link">リンク2</a>
+            <a href="{{ action('PostController@edit', $post->id) }}" class="card-link">削除</a>
+            <a href="{{ action('PostController@delete', $post->id) }}" class="card-link">編集</a>
             </div>
         </div>
       </div>
