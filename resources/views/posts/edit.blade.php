@@ -16,7 +16,7 @@
                 </ul>
               </div>
             @endif
-            <form action="{{ route('posts.create') }}" method="post">
+            <form action="{{ route('posts.edit', ['id' => $post]) }}" method="post">
               @csrf
               <div class="form-group">
                 <label for="title">タイトル</label>

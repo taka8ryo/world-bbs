@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use App\Comment;
 use App\Http\Requests\CreatePost;
+use App\Http\Requests\EditPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,17 +55,15 @@ class PostController extends Controller
         ]);
     }
 
-    public function edit(int $id, int $post_id, EditPost $request)
+    public function edit(int $id, EditPost $request)
     {
-        $post = Post::find($post_id);
+        $post = Post::find($id);
 
         $post->title = $request->title;
         $post->content = $request->content;
         $post->save();
 
-        return redirect()->route('post.index', [
-            'id' => $post->post_id,
-        ]);
+        return redirect()->route('posts.index');
     }
 
     public function delete($id)

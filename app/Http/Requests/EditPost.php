@@ -21,7 +21,8 @@ class EditPost extends CreatePost
     public function rules()
     {
         return [
-            //
+            'title' => 'required|max:50',
+            'content' => 'required|max:300',
         ];
     }
 }
