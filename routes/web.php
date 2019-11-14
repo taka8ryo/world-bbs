@@ -24,7 +24,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/posts/{id}/edit', 'PostController@showEditForm')->name('posts.edit');
     Route::post('/posts/{id}/edit', 'PostController@edit');
 
+<<<<<<< HEAD
     Route::get('/posts/{id}/delete', 'PostController@delete');
+=======
+    Route::get('posts/{id}/delete', 'PostController@delete');
+>>>>>>> 1d0fbf468dcce55ac957d63d52bd7662d4561577
 });
 
 Auth::routes();
