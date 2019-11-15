@@ -10,21 +10,22 @@
             投稿する
           </a>
         </div>
-        <div class="list-group">
-          @foreach($posts as $post)
-          <div class="card" style="width: 18rem;">
-            <div class="card-body">
-              <h5 class="card-title">{{ $post->title }}</h5>
-              <a href="{{ action('PostController@show', $post->id) }}">
-                <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
-              </a>
-              <p class="card-text">{{ $post->content }}</p>
-              <a href="{{ action('PostController@edit', $post->id) }}" class="card-link">編集</a>
-              <a href="{{ action('PostController@delete',$post->id) }}" class="card-link">削除</a>
+        @foreach($posts as $post)
+          <div class="list-group">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{ $post->title }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">名前: {{ $post->user->name }}</h6>
+                <p class="card-text">{{ $post->content }}</p>
+                <a href="{{ action('PostController@edit', $post->id) }}" class="card-link">編集</a>
+                <a href="{{ action('PostController@delete',$post->id) }}" class="card-link">削除</a>
+                <a href="{{ action('PostController@show', $post->id) }}">
+                    <h6 class="card-subtitle mb-2 text-muted">{{ $post->created_at }}</h6>
+                </a>
+              </div>
             </div>
           </div>
-          @endforeach
-        </div>
+        @endforeach
       </div>
     </div>
   </div>

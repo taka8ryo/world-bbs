@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,7 +21,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/posts', 'PostController@index')->name('posts.index');
 
     Route::get('/posts/create', 'PostController@showCreateForm')->name('posts.create');
-    Route::post('posts/create', 'PostController@create');
+    Route::post('/posts/create', 'PostController@create');
 
     Route::get('/posts/{id}/edit', 'PostController@showEditForm')->name('posts.edit');
     Route::post('/posts/{id}/edit', 'PostController@edit');
@@ -27,6 +29,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/posts/{id}/delete', 'PostController@delete');
 
     Route::post('/comments/create', 'CommentController@create')->name('comments.create');
+
+    Route::get('/comments/{id}/edit', 'CommentController@edit')->name('comments.edit');
+    Route::post('/comments/{id}/edit', 'CommentController@update');
+
+    Route::get('/comments/{id}/delete', 'CommentController@delete');
 });
 
 Auth::routes();
