@@ -3,15 +3,19 @@
 namespace App\Http\Requests;
 
 use App\Post;
-use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class EditPost extends CreatePost
+class CreateComment extends createPost
 {
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
+    public function authorize()
+    {
+        return true;
+    }
 
     /**
      * Get the validation rules that apply to the request.
@@ -21,8 +25,14 @@ class EditPost extends CreatePost
     public function rules()
     {
         return [
-            'title' => 'required|max:50',
-            'content' => 'required|max:300',
+            'comments' => 'required|max:300',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'comments' => '内容',
         ];
     }
 }

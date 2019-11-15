@@ -25,6 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/posts/{id}/edit', 'PostController@edit');
 
     Route::get('/posts/{id}/delete', 'PostController@delete');
+
+    Route::post('/comments/create', 'CommentController@create')->name('comments.create');
 });
 
 Auth::routes();

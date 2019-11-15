@@ -4,12 +4,7 @@
   <div class="container">
     <div class="row">
       <div class="col col-md-4">
-        <nav class="panel panel-default">投稿</nav>
-        <div class="panel-body">
-          <a href="{{ route('posts.create') }}" class="btn btn-default btn-block">
-            投稿する
-          </a>
-        </div>
+        <nav class="panel panel-default">投稿詳細</nav>
         <div class="list-group">
           <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -21,13 +16,34 @@
             </div>
         </div>
       </div>
-      <div class="col col-md-4">
-        <nav class="panel panel-default">コメント</nav>
-        <div class="panel-body">
-          <a href="{{ route('posts.create') }}" class="btn btn-default btn-block">
-            投稿する
-          </a>
-        </div>
+      <div class="row">
+          <div class="col col-md-offset-3 col-md-6">
+            <nav class="panel panel-default">
+              <div class="panel-heading">コメントする</div>
+              <div class="panel-body">
+                @if ($errors->any())
+                  <div class="alert alert-danger">
+                    <ul>
+                      @foreach($errors->all() as $message)
+                        <li>{{ $message }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
+                <form action="{{ route('comments.create') }}" method="post">
+                  @csrf
+                  <input type="hidden" name="post_id" value="{{ $post->id }}">
+                  <div class="form-group">
+                    <label for="title"> 内容</label>
+                    <textarea class="form-control" name="comments" id="content" cols="30" rows="10">{{ old('content') }}</textarea>
+                  </div>
+                  <div class="text-right">
+                    <button type="submit" class="btn btn-primary">送信</button>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
         <div class="list-group">
           <div class="card" style="width: 18rem;">
             @foreach($post->comments as $comment)
