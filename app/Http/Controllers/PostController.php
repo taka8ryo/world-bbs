@@ -20,10 +20,10 @@ class PostController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $post = Post::find($id);
-        $comments = Comment::where('post_id', $id)->get();
+        $comments = Comment::where('post_id', $post->id)->get();
         return view('posts.show', [
             'post' => $post
         ]);

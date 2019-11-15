@@ -11,4 +11,9 @@ class Post extends Model
 
     protected $table = 'posts';
     protected $dates = ['deleted_at'];
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
