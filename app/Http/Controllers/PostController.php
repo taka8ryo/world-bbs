@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('created_at', 'desc')->paginate(2);
 
         return view('posts/index', [
             'posts' => $posts,
@@ -23,9 +23,11 @@ class PostController extends Controller
     public function show(int $id)
     {
         $post = Post::find($id);
-        $comments = Comment::where('post_id', $post->id)->get();
+        $comments = $post->comments;
+        $post->setRelation('comments', $post->comments()->orderBY('created_at', 'desc')->paginate(3));
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            'comments' => $comments,
         ]);
     }
 

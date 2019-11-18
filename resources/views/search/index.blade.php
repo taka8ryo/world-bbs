@@ -4,18 +4,24 @@
   <div class="container">
     <div class="row">
       <div class="col col-md-4">
-        <nav class="panel panel-default">投稿一覧</nav>
+        <nav class="panel panel-default">投稿検索</nav>
         <div class="panel-body">
           <a href="{{ route('posts.create') }}" class="btn btn-default btn-block">
             投稿する
           </a>
         </div>
           <div class="panel-body">
-            <a href="{{ route('posts.search') }}" class="btn btn-default btn-block">
-              検索する
-            </a>
+              <div class="row">
+                  <div class="col col-md-4">
+                    <form action="{{ route('posts.search')}}" method="GET">
+                      <div class="form-group">
+                        <input type="text" name="keyword" class="form-controll">
+                      </div>
+                      <input type="submit" value="検索" class="btn btn-info">
+                    </form>
+                  </div>
           </div>
-        @foreach($posts as $post)
+        @foreach($data as $post)
           <div class="list-group">
             <div class="card" style="width: 18rem;">
               <div class="card-body">
@@ -32,7 +38,7 @@
           </div>
         @endforeach
         <div class="d-flex justify-content-center">
-          {{ $posts->links() }}
+            {{ $data->appends(Request::only('keyword'))->links() }}
         </div>
       </div>
     </div>

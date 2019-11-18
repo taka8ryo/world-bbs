@@ -58,6 +58,9 @@
             </div>
           </div>
         @endforeach
+        <div class="d-flex justify-content-center">
+            {{ $post->comments->links() }}
+        </div>
       </div>
     </div>
   </div>

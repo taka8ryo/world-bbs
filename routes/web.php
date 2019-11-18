@@ -34,6 +34,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/comments/{id}/edit', 'CommentController@update');
 
     Route::get('/comments/{id}/delete', 'CommentController@delete');
+
+    Route::get('/search', 'SearchController@index')->name('posts.search');
 });
 
 Auth::routes();
