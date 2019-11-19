@@ -43,8 +43,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('products/{id}', 'ProductController@show');
 });
 
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => admin], function () {
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {
     Route::resource('products', 'ProductController');
+    Route::get('/orders', 'ProductController@orders');
 });
 
 Auth::routes();
