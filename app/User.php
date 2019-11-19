@@ -7,10 +7,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Mail\ResetPassword;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Auth\Passwords\CanResetPassword as CanResetPassword;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, CanResetPassword, Billable;
 
     /**
      * The attributes that are mass assignable.

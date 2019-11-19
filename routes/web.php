@@ -36,6 +36,15 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/comments/{id}/delete', 'CommentController@delete');
 
     Route::get('/search', 'SearchController@index')->name('posts.search');
+
+    Route::get('/discounts', 'DiscountsController@index');
+
+    Route::get('products', 'ProductController@index');
+    Route::get('products/{id}', 'ProductController@show');
+});
+
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => admin], function () {
+    Route::resource('products', 'ProductController');
 });
 
 Auth::routes();
