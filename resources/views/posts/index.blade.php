@@ -3,7 +3,7 @@
 @section('content')
   <div class="container">
     <div class="row">
-      <div class="col col-md-4">
+      <div class="col col-md-offset-3 col-md-6">
         <nav class="panel panel-default">投稿一覧</nav>
         <div class="panel-body">
           <a href="{{ route('posts.create') }}" class="btn btn-default btn-block">

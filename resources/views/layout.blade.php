@@ -16,11 +16,11 @@
       @if(Auth::check())
         <span class="my-navbar-item">ようこそ、{{ Auth::user()->name }}さん</span>
         |
-        <a class="doropdown-item" href="{{route('posts.create')}}">投稿</a>
+        <a class="my-navbar-item" href="{{route('posts.create')}}">投稿</a>
         |
-        <a class="doropdown-item" href="{{route('posts.index')}}">投稿一覧</a>
+        <a class="my-navbar-item" href="{{route('posts.index')}}">投稿一覧</a>
         |
-        <a class="dropdown-item" href="{{ route('logout') }}"
+        <a class="my-navbar-item" href="{{ route('logout') }}"
           onclick="event.preventDefault();
                       document.getElementById('logout-form').submit();">
           {{ __('Logout') }}
