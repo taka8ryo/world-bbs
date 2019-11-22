@@ -13,9 +13,9 @@ use App\Http\Controllers\CommentController;
 |
 */
 
-Route::group(['middleware' => 'auth'], function () {
-    Route::get('/', 'HomeController@index')->name('home');
 
+Route::group(['middleware' => 'verified'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
     Route::get('/post/{id}', 'PostController@show')->name('posts.show');
 
     Route::get('/posts', 'PostController@index')->name('posts.index');
@@ -48,4 +48,4 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admi
     Route::get('/orders', 'ProductController@orders');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
