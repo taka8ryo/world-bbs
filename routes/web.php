@@ -41,6 +41,9 @@ Route::group(['middleware' => 'verified'], function () {
 
     Route::get('products', 'ProductController@index');
     Route::get('products/{id}', 'ProductController@show');
+
+    Route::get('change/name', 'UserController@showChangeNameForm')->name('change.name');
+    Route::post('change/name', 'UserController@changeName')->name('update.name');
 });
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'admin'], function () {

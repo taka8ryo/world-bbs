@@ -14,7 +14,7 @@
     <a class="my-navbar-brand" href="/">掲示板</a>
     <div class="my-navbar-control">
       @if(Auth::check())
-        <span class="my-navbar-item">ようこそ、{{ Auth::user()->name }}さん</span>
+        <a class="my-navbar-item" href="{{ route('change.name') }}">ようこそ、{{ Auth::user()->name }}さん</span>
         |
         <a class="my-navbar-item" href="{{route('posts.create')}}">投稿</a>
         |
